@@ -1,0 +1,66 @@
+﻿<Window x:Class="AnalizadorSemantico.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AnalizadorSemantico"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Vertical" Margin="10">
+            <TextBlock Text="Ingrese código C#" FontSize="16"/>
+            <TextBox x:Name="CodeInput" Height="150" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"/>
+            <Button Content="Analizar" Click="AnalyzeCode_Click" Width="100"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1" Margin="0,10,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Análisis Léxico -->
+            <StackPanel Grid.Column="0" Margin="5">
+                <TextBlock Text="Análisis Léxico (Tokens)" FontSize="14" FontWeight="Bold"/>
+                <ListView x:Name="LexicalListView">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+
+            <!-- Análisis Sintáctico -->
+            <StackPanel Grid.Column="1" Margin="5">
+                <TextBlock Text="Errores Sintácticos" FontSize="14" FontWeight="Bold"/>
+                <ListView x:Name="SyntaxListView">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+
+            <!-- Análisis Semántico -->
+            <StackPanel Grid.Column="2" Margin="5">
+                <TextBlock Text="Errores Semánticos" FontSize="14" FontWeight="Bold"/>
+                <ListView x:Name="SemanticListView">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
